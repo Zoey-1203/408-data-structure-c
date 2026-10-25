@@ -1,0 +1,52 @@
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "C语言：编译当前文件",
+      "type": "process",
+      "command": "D:\\mingw64\\mingw64\\bin\\gcc.exe",
+      "args": [
+        "-g",
+        "${fileBasename}",
+        "-o",
+        "${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "C++：编译当前文件",
+      "type": "process",
+      "command": "D:\\mingw64\\mingw64\\bin\\g++.exe",
+      "args": [
+        "-static",
+        "-static-libgcc",
+        "-static-libstdc++",
+        "${fileBasename}",
+        "-o",
+        "${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "C++：运行当前文件",
+      "type": "process",
+      "command": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "dependsOn": "C++：编译当前文件",
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
